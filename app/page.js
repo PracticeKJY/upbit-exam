@@ -1,95 +1,72 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import {
+  ExchangeProvider,
+  SummaryProvider,
+  UserProvider,
+  OrderbookProvider,
+} from './ExchangeContext';
+
+import TradingSimulator from './TradingSimulator';
+
+
+
+
+import Test from "./Test";
+const jwt = require('jsonwebtoken');
+const {v4: uuidv4} = require('uuid');
+const WebSocket = require("ws");
+
+
+
+// const payload = {
+//   access_key: "jEqIjgzCzMDUamaT6pKDRNZVkDZbAwLE1Yt7DbQ3",
+//   nonce: uuidv4(),
+// };
+
+// const jwtToken = jwt.sign(payload, "uWtY06gzaW3MY1CrmOjC9Ua6oUsGnwtviiOJEz59");
+
+
+
+// const ws = new WebSocket("wss://api.upbit.com/websocket/v1", {
+//     headers: {
+//       authorization: `Bearer ${jwtToken}`
+//     }
+// });
+
+
+// ws.on("open", () => {
+//   console.log("connected!");
+//   // Request after connection
+//   ws.send('[{"ticket":"test example"}]');
+
+// });
+
+// ws.on("error", console.error);
+
+// ws.on("message", (data) => console.log(data.toString()));
+
+// ws.on("close", () => console.log("closed!"));
+
+
+
+
+
 
 export default function Home() {
+
+
+
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <ExchangeProvider>
+    <SummaryProvider>
+      <UserProvider>
+        <OrderbookProvider>
+          <TradingSimulator />
+        </OrderbookProvider>
+      </UserProvider>
+    </SummaryProvider>
+  </ExchangeProvider>
+  );
 }
+
+
